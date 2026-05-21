@@ -6,6 +6,19 @@ import plotly.graph_objects as go
 import json
 import traceback
 
+import builtins
+
+def safe_import(name, globals=None, locals=None, fromlist=(), level=0):
+    allowed_modules = ['pandas', 'duckdb', 'plotly', 'json', 'numpy', 'datetime', 'statsmodels', 'scipy', 'sklearn', 'math']
+    base_name = name.split('.')[0]
+    if base_name not in allowed_modules:
+        raise ImportError(f"Importing module '{name}' is not allowed in this sandbox for security reasons.")
+    return __import__(name, globals, locals, fromlist, level)
+
+# Build a secure builtins environment (stripping dangerous functions)
+safe_builtins = {k: v for k, v in vars(builtins).items() if k not in ['eval', 'exec', 'open', '__import__', 'exit', 'quit', 'input']}
+safe_builtins['__import__'] = safe_import
+
 def execute_sandbox(code: str, filepath: str) -> tuple[str, dict, str]:
     """
     Executes AI-generated Python code in a sandboxed environment.
@@ -30,7 +43,7 @@ def execute_sandbox(code: str, filepath: str) -> tuple[str, dict, str]:
     
     try:
         # Execute the code securely (within the constraints of our VM context)
-        exec(code, {"__builtins__": {}}, local_vars)
+        exec(code, {"__builtins__": safe_builtins}, local_vars)
         
         result_text = local_vars.get('result_text')
         plot_json = local_vars.get('plot_json')
