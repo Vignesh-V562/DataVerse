@@ -8,6 +8,14 @@
 
 **DataVerse** is a modern data analytics workspace that allows users to upload datasets (CSV/Excel) and query them using natural English. By securely sandboxing AI-generated Python code, DataVerse performs complex data processing, extracts hidden business insights, and renders interactive visual charts—all instantly.
 
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![DUCKDB](https://img.shields.io/badge/Duck-DB?style=flat-square&logo=duckdb)](https://duckdb.org/)
+[![Groq](https://img.shields.io/badge/AI-Groq%20Llama%203.3-orange?style=flat-square&logo=groq)](https://groq.com/)
+[![Supabase](https://img.shields.io/badge/Database-Supabase-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
+[![TailwindCSS](https://img.shields.io/badge/Styling-Tailwind%204-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Pandas](https://img.shields.io/badge/Data_Analysis-Pandas-150458?style=flat-square&logo=pandas)](https://pandas.pydata.org/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
+
 ## ✨ Key Features
 
 - 🧠 **Conversational Analytics**: Ask questions in plain English. The AI generates and executes Pandas/DuckDB queries to find the answer.
