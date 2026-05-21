@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* ── Base Layer ── */
+@layer base {
+  body {
+    @apply bg-dv-bg text-txt-primary font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(91, 138, 114, 0.3);
+    color: #e8e4de;
+  }
+}
+
+/* ── Component Layer ── */
+@layer components {
+  /* Card surfaces */
+  .dv-card {
+    @apply bg-dv-card border border-white/[0.06] rounded-xl;
+  }
+
+  .dv-card-elevated {
+    @apply bg-dv-elevated border border-white/[0.06] rounded-xl;
+  }
+
+  /* Sidebar navigation items */
+  .dv-sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-txt-secondary hover:text-txt-primary hover:bg-white/[0.04] transition-colors cursor-pointer;
+  }
+
+  .dv-sidebar-item.active {
+    @apply text-sage-300 bg-sage-500/[0.08];
+  }
+
+  /* Form inputs */
+  .dv-input {
+    @apply w-full bg-dv-input border border-white/[0.08] rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-sage-500/40 focus:border-sage-500/40 transition-all placeholder-txt-tertiary text-sm text-txt-primary;
+  }
+
+  /* Buttons */
+  .dv-btn {
+    @apply px-4 py-2 bg-dv-elevated hover:bg-white/[0.08] border border-white/[0.08] rounded-xl transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 text-sm font-medium text-txt-secondary hover:text-txt-primary;
+  }
+
+  .dv-btn-sage {
+    @apply px-5 py-2.5 bg-sage-600/90 hover:bg-sage-500 border border-sage-500/30 rounded-xl transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 shadow-sage-glow text-white text-sm font-medium;
+  }
+
+  .dv-btn-coral {
+    @apply w-10 h-10 bg-coral-500 hover:bg-coral-400 rounded-full flex items-center justify-center transition-all duration-200 active:scale-95 text-white shadow-dv;
+  }
+
+  /* Icon rail & toolbar buttons */
+  .dv-rail-btn {
+    @apply w-10 h-10 rounded-xl flex items-center justify-center text-txt-tertiary hover:text-txt-secondary hover:bg-white/[0.04] transition-all cursor-pointer;
+  }
+
+  .dv-rail-btn.active {
+    @apply text-sage-400 bg-sage-500/[0.1];
+  }
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}

@@ -1,0 +1,38 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+.npm/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.venv/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Uploaded Files / Temp Data
+backend/uploads/
+*.csv
+*.xlsx
+*.db
