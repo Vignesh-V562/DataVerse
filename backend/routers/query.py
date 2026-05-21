@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
+import asyncio
 from utils.llm_agent import generate_code
 from utils.execution import execute_sandbox
 from utils.db import get_session_state, save_chat_message
@@ -38,8 +39,8 @@ async def query_dataset(req: QueryRequest, user_id: str = Depends(get_current_us
             code = await generate_code(req.question, summary, error_feedback)
             print(f"--- Attempt {attempt+1} Code ---\n{code}\n-----------------------")
             
-            # 2. Execute Code
-            result_text, plot_json, exec_error = execute_sandbox(code, filepath)
+            # 2. Execute Code (Offloaded to separate thread to prevent blocking)
+            result_text, plot_json, exec_error = await asyncio.to_thread(execute_sandbox, code, filepath)
             
             if exec_error:
                 error_feedback = exec_error

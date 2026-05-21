@@ -30,7 +30,7 @@ def execute_sandbox(code: str, filepath: str) -> tuple[str, dict, str]:
     
     try:
         # Execute the code securely (within the constraints of our VM context)
-        exec(code, {}, local_vars)
+        exec(code, {"__builtins__": {}}, local_vars)
         
         result_text = local_vars.get('result_text')
         plot_json = local_vars.get('plot_json')

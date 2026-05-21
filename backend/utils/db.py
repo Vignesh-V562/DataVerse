@@ -48,6 +48,14 @@ async def get_user_sessions(user_id: str) -> list:
     return sessions
 
 async def delete_session(session_id: str):
-    """Delete a session and its associated chat history."""
+    """Delete a session, its associated chat history, and the physical dataset file."""
+    # Retrieve the session to get the filepath
+    session = await get_session_state(session_id)
+    if session and session.get('filepath'):
+        try:
+            os.remove(session['filepath'])
+        except OSError:
+            pass # File might already be deleted or missing
+            
     await db.sessions.delete_one({"session_id": session_id})
     await db.chat_history.delete_one({"session_id": session_id})
