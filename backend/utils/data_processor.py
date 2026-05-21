@@ -7,8 +7,11 @@ import io
 import os
 import uuid
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
-os.makedirs(DATA_DIR, exist_ok=True)
+BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR, exist_ok=True)
 
 def generate_summary(df: pd.DataFrame) -> dict:
     """Generate statistical summary for the frontend."""
